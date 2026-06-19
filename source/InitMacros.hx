@@ -6,24 +6,10 @@ class InitMacros
 {
     public static function main()
     {
-        CPPExternMacro.PATH = '../../lib/';
+        final config:{path:String, classes:Array<TypeConfig>} = cast haxe.Json.parse(sys.io.File.getContent('externsConfig.json'));
 
-        CPPExternMacro.generate([
-            {
-                name: 'Extern',
-                file: 'example',
-                fields: [
-                    {
-                        name: 'example',
-                        arguments: [
-                            {
-                                name: 'text',
-                                type: 'String'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]);
+        CPPExternMacro.PATH = config.path;
+
+        CPPExternMacro.generate(config.classes);
     }
 }
