@@ -1,0 +1,25 @@
+{
+    "path": "../../cpp/",
+    "classes": [
+        {
+            "name": "Extern",
+            "file": "example",
+            "fields": [
+                {
+                    "name": "example",
+                    "arguments": [
+                        {
+                            "name": "a",
+                            "type": "Float"
+                        },
+                        {
+                            "name": "b",
+                            "type": "Int"
+                        }
+                    ],
+                    "returnType": "Float"
+                }
+            ]
+        }
+    ]
+}
