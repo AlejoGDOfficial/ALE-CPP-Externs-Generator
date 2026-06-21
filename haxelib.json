@@ -9,7 +9,7 @@
     ],
     "description": "A small utility for creating C++ externs in Haxe",
     "version": "1.0.0",
-    "classPath": "source/",
+    "classPath": "",
     "releasenote": "",
     "contributors": [
         "AlejoGDOfficial"
