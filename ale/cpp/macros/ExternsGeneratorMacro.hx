@@ -55,11 +55,6 @@ class ExternsGeneratorMacro
                 isExtern: true,
                 fields: [
                     for (field in type.functions)
-                    {
-                        field.type ??= {
-                            path: 'Void'
-                        };
-
                         {
                             name: field.name,
                             access: [APublic, AStatic],
@@ -89,7 +84,6 @@ class ExternsGeneratorMacro
                             }),
                             pos: Context.currentPos()
                         }
-                    }
                 ],
                 pos: Context.currentPos()
             });
