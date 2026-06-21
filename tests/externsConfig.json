@@ -4,6 +4,14 @@
         {
             "name": "Extern",
             "file": "example",
+            "variables": [
+                {
+                    "name": "variable",
+                    "type": {
+                        "path": "Float"
+                    }
+                }
+            ],
             "functions": [
                 {
                     "name": "example",

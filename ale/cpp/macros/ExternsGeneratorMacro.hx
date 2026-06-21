@@ -43,29 +43,27 @@ class ExternsGeneratorMacro
                 name: clsName,
                 pack: clsPack,
                 kind: TDClass(null, null, false),
-                meta: [
-                    {
-                        name: ':include',
-                        params: [
-                            macro $v{path},
-                        ],
-                        pos: Context.currentPos()
-                    }
-                ],
+                meta: [{
+                    name: ':include',
+                    params: [
+                        macro $v{path},
+                    ],
+                    pos: Context.currentPos()
+                }],
                 isExtern: true,
                 fields: [
-                    for (field in type.functions)
+                    for (func in type.functions)
                         {
-                            name: field.name,
+                            name: func.name,
                             access: [APublic, AStatic],
                             meta: [{
                                 name: ':native',
-                                params: [ macro 'example' ],
+                                params: [ macro $v{func.native ?? func.name} ],
                                 pos: Context.currentPos()
                             }],
                             kind: FFun({
                                 args: [
-                                    for (arg in field.arguments)
+                                    for (arg in func.arguments ?? [])
                                     {
                                         arg.optional ??= false;
 
@@ -78,13 +76,28 @@ class ExternsGeneratorMacro
                                         }
                                     }
                                 ],
-                                ret: resolveType(field.type ?? {
+                                ret: resolveType(func.type ?? {
                                     path: 'Void'
                                 })
                             }),
                             pos: Context.currentPos()
                         }
-                ],
+                ].concat([
+                    for (vari in type.variables)
+                        {
+                            name: vari.name,
+                            access: [APublic, AStatic],
+                            meta: [{
+                                name: ':native',
+                                params: [ macro $v{vari.native ?? vari.name} ],
+                                pos: Context.currentPos()
+                            }],
+                            kind: FVar(resolveType(vari.type ?? {
+                                path: 'Dynamic'
+                            })),
+                            pos: Context.currentPos()
+                        }
+                ]),
                 pos: Context.currentPos()
             });
         }

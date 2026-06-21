@@ -1,6 +1,7 @@
 -main Main
 -cp source
 --macro InitMacros.main()
+-D message.reporting=pretty
 -lib ale-cpp-externs-generator
 --cpp bin
 -cmd ./bin/Main
