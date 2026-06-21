@@ -63,7 +63,7 @@ class ExternsGeneratorMacro
                 meta: meta,
                 isExtern: true,
                 fields: [
-                    for (func in type.functions)
+                    for (func in type.functions ?? [])
                         {
                             name: func.name,
                             access: [APublic, AStatic],
